@@ -1,0 +1,5 @@
+{
+  "repositoryName": "ignitechallenge-chapter-iii",
+  "adapter": "@slicemachine/adapter-next",
+  "libraries": ["./slices"]
+}
