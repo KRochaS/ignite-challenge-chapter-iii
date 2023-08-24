@@ -1,9 +1,12 @@
-import { GetStaticProps } from 'next';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable prettier/prettier */
 
-import { getPrismicClient } from '../services/prismic';
+import Head from 'next/head';
+import Header from '../components/Header';
 
-import commonStyles from '../styles/common.module.scss';
-import styles from './home.module.scss';
+
+
 
 interface Post {
   uid?: string;
@@ -24,9 +27,16 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-// export default function Home() {
-//   // TODO
-// }
+export default function Home() {
+    return (
+        <>
+            <Head>
+                <title> Home | spacetraveling. </title>
+            </Head>
+            <Header />
+        </>
+    )
+}
 
 // export const getStaticProps = async () => {
 //   // const prismic = getPrismicClient({});
