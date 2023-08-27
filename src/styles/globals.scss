@@ -9,6 +9,7 @@
      --body: #D7D7D7;
      --info: #BBB;
     --highlight: #FF57B2;
+    --background: #1A1D23;
 }
 
 @media(max-width: 1080px) {
@@ -24,8 +25,7 @@
 }
 
 body {
-    background: var(--gray-900);
-    color: var(--white);
+    background: var(--background, #1A1D23);
 }
 
 body,
