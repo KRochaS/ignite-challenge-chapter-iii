@@ -10,6 +10,7 @@ import { FiCalendar, FiUser } from "react-icons/fi";
 import Header from '../components/Header';
 
 
+import { getPrismicClient } from '../services/prismic';
 import styles from './home.module.scss';
 
 
@@ -135,6 +136,38 @@ export default function Home() {
         </>
     )
 }
+
+export const getStaticProps = async () => {
+    const prismic = getPrismicClient({});
+  const postsResponse = await prismic.getByType('post', {
+    pageSize: 2,
+  });
+
+const posts = postsResponse.results.map((post) => {
+    return {
+        uid: post.uid,
+        first_publication_date: post.first_publication_date,
+        data: {
+            title: post.data.title,
+            subtitle: post.data.subtitle,
+            author: post.data.author,
+        }
+    }
+})
+
+const postPagination = {
+    next_page: postsResponse.next_page,
+    results: posts
+}
+
+return {
+    props: {
+        postPagination,
+    },
+    revalidate: 60 * 60 * 24 // 24h
+}
+  // TODO
+};
 
 // export const getStaticProps = async () => {
 //   // const prismic = getPrismicClient({});
