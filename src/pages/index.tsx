@@ -4,6 +4,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable prettier/prettier */
 
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FiCalendar, FiUser } from "react-icons/fi";
@@ -34,7 +36,9 @@ interface HomeProps {
     postsPagination: PostPagination;
 }
 
-export default function Home() {
+export default function Home({ postsPagination }: HomeProps) {
+
+    console.log(postsPagination);
     return (
         <>
             <Head>
@@ -45,86 +49,34 @@ export default function Home() {
 
                 <div>
 
-                    <article className={styles.article}>
-                        <Link href={'#'}>
-                            <a>
-                                <h1>
-                                    Como utilizar Hooks
-                                </h1>
-                                <p>Pensando em sincronização em vez de ciclos de vida.</p>
-                                <div>
-                                    <span> <FiCalendar /> 15 Mar 2021</span>
-                                    <span> <FiUser /> Joseph Oliveira</span>
-                                </div>
+                    {postsPagination.results.map(post => (
+                        <article className={styles.article}>
+                            <Link href={post.uid}>
+                                <a>
+                                    <h1>
+                                        {post.data.title}
+                                    </h1>
+                                    <p>{post.data.subtitle}</p>
+                                    <div>
+                                        <span>
+                                            <FiCalendar />
+                                            {format(
+                                                new Date(post.first_publication_date),
+                                                'dd MMM yyyy',
+                                                {
+                                                    locale: ptBR,
+                                                }
+                                            )}</span>
+                                        <span> <FiUser /> {post.data.author}</span>
+                                    </div>
 
-                            </a>
-                        </Link>
-                    </article>
+                                </a>
+                            </Link>
+                        </article>
+                    ))}
 
-                    <article className={styles.article}>
-                        <Link href='#'>
-                            <a>
-                                <h1>
-                                    Criando um app CRA do zero
-                                </h1>
-                                <p> Tudo sobre como criar a sua primeira aplicação utilizando Create React App</p>
-                                <div>
-                                    <span> <FiCalendar /> 15 Mar 2021</span>
-                                    <span> <FiUser /> Joseph Oliveira</span>
-                                </div>
 
-                            </a>
-                        </Link>
-                    </article>
 
-                    <article className={styles.article}>
-                        <Link href={'#'}>
-                            <a>
-                                <h1>
-                                    Como utilizar Hooks
-                                </h1>
-                                <p>Pensando em sincronização em vez de ciclos de vida.</p>
-                                <div>
-                                    <span> <FiCalendar /> 15 Mar 2021</span>
-                                    <span> <FiUser /> Joseph Oliveira</span>
-                                </div>
-
-                            </a>
-                        </Link>
-                    </article>
-
-                    <article className={styles.article}>
-                        <Link href={'#'}>
-                            <a>
-
-                                <h1>
-                                    Como utilizar Hooks
-                                </h1>
-                                <p>Pensando em sincronização em vez de ciclos de vida.</p>
-                                <div>
-                                    <span> <FiCalendar /> 15 Mar 2021</span>
-                                    <span> <FiUser /> Joseph Oliveira</span>
-                                </div>
-
-                            </a>
-                        </Link>
-                    </article>
-
-                    <article className={styles.article}>
-                        <Link href={'#'}>
-                            <a>
-                                <h1>
-                                    Como utilizar Hooks
-                                </h1>
-                                <p>Pensando em sincronização em vez de ciclos de vida.</p>
-                                <div>
-                                    <span> <FiCalendar /> 15 Mar 2021</span>
-                                    <span> <FiUser /> Joseph Oliveira</span>
-                                </div>
-
-                            </a>
-                        </Link>
-                    </article>
 
                     <button className={styles.button} type='button'>
                         Carregar mais posts
@@ -139,39 +91,33 @@ export default function Home() {
 
 export const getStaticProps = async () => {
     const prismic = getPrismicClient({});
-  const postsResponse = await prismic.getByType('post', {
-    pageSize: 2,
-  });
+    const postsResponse = await prismic.getByType('post', {
+        pageSize: 2,
+    });
 
-const posts = postsResponse.results.map((post) => {
-    return {
-        uid: post.uid,
-        first_publication_date: post.first_publication_date,
-        data: {
-            title: post.data.title,
-            subtitle: post.data.subtitle,
-            author: post.data.author,
+    const posts = postsResponse.results.map((post) => {
+        return {
+            uid: post.uid,
+            first_publication_date: post.first_publication_date,
+            data: {
+                title: post.data.title,
+                subtitle: post.data.subtitle,
+                author: post.data.author,
+            }
         }
+    })
+
+    const postsPagination = {
+        next_page: postsResponse.next_page,
+        results: posts
     }
-})
 
-const postPagination = {
-    next_page: postsResponse.next_page,
-    results: posts
-}
+    return {
+        props: {
+            postsPagination,
+        },
+        revalidate: 60 * 60 * 24 // 24h
+    }
 
-return {
-    props: {
-        postPagination,
-    },
-    revalidate: 60 * 60 * 24 // 24h
-}
-  // TODO
 };
 
-// export const getStaticProps = async () => {
-//   // const prismic = getPrismicClient({});
-//   // const postsResponse = await prismic.getByType(TODO);
-
-//   // TODO
-// };
