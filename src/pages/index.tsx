@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import { FiCalendar, FiUser } from "react-icons/fi";
 import Header from '../components/Header';
 
@@ -37,8 +38,31 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps) {
+    const [posts, setPosts] = useState<Post[]>(postsPagination.results);
+    const [nextPage, setNextPage] = useState(postsPagination.next_page);
 
-    console.log(postsPagination);
+    function handleLoadMorePages(): void {
+        fetch(nextPage)
+          .then(response => response.json())
+          .then(responseData => {
+            setNextPage(responseData.next_page);
+    
+            const results = responseData.results.map(post => {
+              return {
+                uid: post.uid,
+                first_publication_date: post.first_publication_date,
+                data: {
+                  title: post.data.title,
+                  subtitle: post.data.subtitle,
+                  author: post.data.author,
+                },
+              };
+            });
+    
+            setPosts([...posts, ...results]);
+          });
+      }
+
     return (
         <>
             <Head>
@@ -49,9 +73,9 @@ export default function Home({ postsPagination }: HomeProps) {
 
                 <div>
 
-                    {postsPagination.results.map(post => (
-                        <article className={styles.article}>
-                            <Link href={post.uid}>
+                    {posts.map(post => (
+                        <article key={post.uid} className={styles.article}>
+                              <Link key={post.uid} href={`/post/${post.uid}`}>
                                 <a>
                                     <h1>
                                         {post.data.title}
@@ -78,9 +102,14 @@ export default function Home({ postsPagination }: HomeProps) {
 
 
 
-                    <button className={styles.button} type='button'>
-                        Carregar mais posts
-                    </button>
+                    {
+                        nextPage && (
+                            <button className={styles.button} type='button' onClick={handleLoadMorePages}>
+                                Carregar mais posts
+                            </button>
+                        )
+                    }
+
                 </div>
             </main>
 
