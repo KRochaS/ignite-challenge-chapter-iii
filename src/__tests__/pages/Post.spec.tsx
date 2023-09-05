@@ -1,14 +1,15 @@
+/* eslint-disable prettier/prettier */
 import { render, screen } from '@testing-library/react';
 import {
-  GetStaticPropsContext,
-  GetStaticPathsContext,
-  GetStaticPathsResult,
+    GetStaticPathsContext,
+    GetStaticPathsResult,
+    GetStaticPropsContext,
 } from 'next';
 import { ParsedUrlQuery, parse } from 'querystring';
 
 import { useRouter } from 'next/router';
+import Post, { getStaticPaths, getStaticProps } from '../../pages/post/[slug]';
 import { getPrismicClient } from '../../services/prismic';
-import Post, { getStaticProps, getStaticPaths } from '../../pages/post/[slug]';
 
 interface Post {
   first_publication_date: string | null;
@@ -251,7 +252,7 @@ describe('Post', () => {
     };
 
     const response = (await getStaticProps(
-      getStaticPropsContext
+        getStaticPropsContext
     )) as GetStaticPropsResult;
 
     expect(response.props.post).toEqual(expect.objectContaining(postReturn));
