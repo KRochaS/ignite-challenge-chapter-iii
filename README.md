@@ -17,3 +17,17 @@
    <img src="https://img.shields.io/badge/-Prismic-202024?style=flat&logoColor=white" />
 </p>
 
+## :bar_chart: About
+Developed using ReactJS and Next.js, the challenge was to build a blog from scratch.
+
+The key challenge was to seamlessly integrate data from Prismic, a content management system, and ensure that blog's interface matches the design provided in Figma. Using SSG (Static Site Genaration),
+technique that allows us to pre-build our web pages during the development process, significantly improving website performance.
+
+## :books: Tecnologias e libs  
+
+- [React](https://pt-br.reactjs.org/)
+- [NextJS](https://nextjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [SCSS](https://sass-lang.com/)
+- [Prismic](https://prismic.io/)
+
