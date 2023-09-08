@@ -1,38 +1,33 @@
-<p align="center">
-  <img alt="Rocketseat Education" src="https://avatars.githubusercontent.com/u/69590972?s=200&v=4" width="100px" />
-</p>
 
 <p align="center">
-  <img src="https://img.shields.io/static/v1?label=Rocketseat&message=Education&color=8257e5&labelColor=202024" alt="Rocketseat Project" />
-  <a href="LICENSE"><img  src="https://img.shields.io/static/v1?label=License&message=MIT&color=8257e5&labelColor=202024" alt="License"></a>
+  <img src="https://github.com/KRochaS/ignews/blob/master/.github/ignite-reactjs.svg" width="470" > 
 </p>
-
-
-## 💻 Projeto
-
-ignite-template-reactjs-criando-um-projeto-do-zero
-
-## 📝 Licença
-
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
 <p align="center">
-  Feito com 💜 by Rocketseat
+  <img src="https://github.com/KRochaS/ignite-challenge-chapter-iii/blob/master/.github/logo.svg" width="270" > 
 </p>
-
-
-<!--START_SECTION:footer-->
-
-<br />
-<br />
-
 <p align="center">
-  <a href="https://discord.gg/rocketseat" target="_blank">
-    <img align="center" src="https://storage.googleapis.com/golden-wind/comunidade/rodape.svg" alt="banner"/>
-  </a>
+  <img src="https://github.com/KRochaS/ignite-challenge-chapter-iii/blob/master/.github/Challenge%20Chapter%20III.svg" width="160" > 
 </p>
 
-<!--END_SECTION:footer-->
+<p align="center">	
+   <img src="https://img.shields.io/badge/-ReactJS-202024?style=flat&logoColor=white" />
+  
+   <img src="https://img.shields.io/badge/-NextJS-202024?style=flat&logoColor=white" />
+   
+   <img src="https://img.shields.io/badge/-Prismic-202024?style=flat&logoColor=white" />
+</p>
+
+## :bar_chart: About
+Developed using ReactJS and Next.js, the challenge was to build a blog from scratch.
+
+The key challenge was to seamlessly integrate data from Prismic, a content management system, and ensure that blog's interface matches the design provided in Figma. Using SSG (Static Site Genaration),
+technique that allows us to pre-build our web pages during the development process, significantly improving website performance.
+
+## :books: Tecnologias e libs  
+
+- [React](https://pt-br.reactjs.org/)
+- [NextJS](https://nextjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [SCSS](https://sass-lang.com/)
+- [Prismic](https://prismic.io/)
 
