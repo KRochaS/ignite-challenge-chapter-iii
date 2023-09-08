@@ -31,3 +31,18 @@ technique that allows us to pre-build our web pages during the development proce
 - [SCSS](https://sass-lang.com/)
 - [Prismic](https://prismic.io/)
 
+## :computer: Layout
+ 
+<p align="center">
+  <img src="https://github.com/KRochaS/ignite-challenge-chapter-iii/blob/master/.github/screenshot-01.png" width="986" >
+  <img src="https://github.com/KRochaS/ignite-challenge-chapter-iii/blob/master/.github/screenshot-02.png" width="986" >
+</p>
+
+### Notion Challenge 
+
+The description of the challenge can be found at:
+
+<a href="https://efficient-sloth-d85.notion.site/Desafio-01-Criando-um-projeto-do-zero-b1a3645d286b4eec93f5f1f5476d0ff7">
+  <img src="https://img.shields.io/badge/Notion%20%20-PTBR-%23FF57B2">
+</a>
+
