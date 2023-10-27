@@ -23,7 +23,7 @@ Developed using ReactJS and Next.js, the challenge was to build a blog from scra
 The key challenge was to seamlessly integrate data from Prismic, a content management system, and ensure that blog's interface matches the design provided in Figma. Using SSG (Static Site Genaration),
 technique that allows to pre-build the web pages during the development process, significantly improving website performance.
 
-## :books: Tecnologias e libs  
+## :books: Technologies e libs  
 
 - [React](https://pt-br.reactjs.org/)
 - [NextJS](https://nextjs.org/)
